@@ -5,8 +5,8 @@ fun main() {
         println("2 - Задача с символами")
         println("3 - Перевод из 10-чной в 2-чную систему")
         println("4 - числа с операциями")
-        println("5")
-        println("6")
+        println("5 - Целочисленный показатель")
+        println("6 - ")
         println("0 - Выход")
         print("Выбери цифру: ")
 
@@ -15,8 +15,8 @@ fun main() {
             2 -> task2()
             3 -> task3()
             4 -> task4()
-            5 -> println("Пятая")
-            6 -> println("Шестая")
+            5 -> task5()
+            6 -> task6()
             0 -> {
                 println("ВЫХОД ИЗ ПРОГРАММЫ")
                 return
@@ -41,7 +41,7 @@ fun task1() {
 
     for (i in 1 until input.length) {
         val char = input[i]
-        if (char == currentChar) {
+        val any = if (char == currentChar) {
             count++
         } else {
             result.append(if (count > 1) "$currentChar$count" else currentChar)
@@ -171,5 +171,139 @@ fun task4() {
         result.toString()
     }
 
+
     println("Результат: $formattedResult")
+}
+
+fun task5() {
+    println("Введите целое число n:")
+    val n = readLine()?.toIntOrNull()
+
+    if (n == null) {
+        println("Ошибка: введено не целое число")
+        return
+    }
+
+    println("Введите основание степени x:")
+    val x = readLine()?.toDoubleOrNull()
+
+    if (x == null) {
+        println("Ошибка: введено не число")
+        return
+    }
+
+    val result = findExponent(n, x)
+    println(result)
+}
+
+private fun findExponent(n: Int, x: Double): String {
+    if (n == 0) {
+        return if (x == 0.0) "Целочисленный показатель не существует" else "0"
+    }
+
+    if (x == 0.0) {
+        return "Целочисленный показатель не существует"
+    }
+
+    if (x == 1.0) {
+        return if (n == 1) "0" else "Целочисленный показатель не существует"
+    }
+
+    if (x == -1.0) {
+        return if (n == 1 || n == -1) "0" else "Целочисленный показатель не существует"
+    }
+
+    if (n < 0 && x > 0) {
+        return "Целочисленный показатель не существует"
+    }
+
+    val absN = Math.abs(n.toDouble())
+    val absX = Math.abs(x)
+
+    val candidate = Math.log(absN) / Math.log(absX)
+
+    if (candidate.isNaN() || candidate.isInfinite()) {
+        return "Целочисленный показатель не существует"
+    }
+
+    val candidates = listOf(
+        Math.floor(candidate).toInt(),
+        Math.ceil(candidate).toInt()
+    )
+
+    for (y in candidates) {
+        if (checkPower(x, y, n)) {
+            return y.toString()
+        }
+    }
+
+    if (candidate > -1000 && candidate < 1000) {
+        val extraCandidates = listOf(
+            candidates[0] - 1,
+            candidates[1] + 1
+        )
+
+        for (y in extraCandidates) {
+            if (checkPower(x, y, n)) {
+                return y.toString()
+            }
+        }
+    }
+
+    return "Целочисленный показатель не существует"
+}
+
+private fun checkPower(x: Double, y: Int, n: Int): Boolean {
+    val value = try {
+        Math.pow(x, y.toDouble())
+    } catch (e: Exception) {
+        return false
+    }
+
+    return Math.abs(value - n) < 1e-10 * Math.abs(n.toDouble())
+}
+
+fun task6() {
+    println("Введите первую цифру:")
+    val digit1 = readLine()?.toIntOrNull()
+
+    println("Введите вторую цифру:")
+    val digit2 = readLine()?.toIntOrNull()
+
+    if (digit1 == null || digit2 == null) {
+        println("Ошибка: введены не цифры")
+        return
+    }
+
+    if (digit1 !in 0..9 || digit2 !in 0..9) {
+        println("Ошибка: введены не цифры (должны быть от 0 до 9)")
+        return
+    }
+
+    if (digit1 == digit2) {
+        println("Цифры должны быть различны")
+        return
+    }
+
+    // Пытаемся составить нечетное число из двух цифр
+    val possibleNumbers = mutableListOf<Int>()
+
+    // Первый вариант: первая цифра - десятки, вторая - единицы
+    if (digit1 != 0) { // Число не может начинаться с 0
+        possibleNumbers.add(digit1 * 10 + digit2)
+    }
+
+    // Второй вариант: вторая цифра - десятки, первая - единицы
+    if (digit2 != 0) { // Число не может начинаться с 0
+        possibleNumbers.add(digit2 * 10 + digit1)
+    }
+
+    // Ищем нечетное число среди возможных вариантов
+    val oddNumber = possibleNumbers.firstOrNull { it % 2 != 0 }
+
+    if (oddNumber != null) {
+        println("Нечетное число: $oddNumber")
+    } else {
+        println("Создать нечетное число невозможно")
+    }
 }
