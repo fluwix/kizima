@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e580c876-19a1-4325-a211-fcd0b3bc70df" name="Changes" comment="do 4 zadacha">
+    <list default="true" id="e580c876-19a1-4325-a211-fcd0b3bc70df" name="Changes" comment="vse sdel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/Main.kt" afterDir="false" />
     </list>
@@ -62,7 +62,21 @@
       <option name="project" value="LOCAL" />
       <updated>1757752958650</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="do 4 zadacha">
+      <created>1758357639878</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1758357639878</updated>
+    </task>
+    <task id="LOCAL-00005" summary="vse sdel">
+      <created>1758357689651</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1758357689651</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -80,17 +94,7 @@
     <MESSAGE value="init" />
     <MESSAGE value="до 4 звдачи" />
     <MESSAGE value="do 4 zadacha" />
-    <option name="LAST_COMMIT_MESSAGE" value="do 4 zadacha" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/Main.kt</url>
-          <line>50</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="vse sdel" />
+    <option name="LAST_COMMIT_MESSAGE" value="vse sdel" />
   </component>
 </project>

@@ -63,19 +63,15 @@ fun task2() {
             return
         }
 
-        // подсчет символов
         val charCount = mutableMapOf<Char, Int>()
 
-        // подсчитываем количество каждого символа
         for (char in input) {
-            val upperChar = char.uppercaseChar() // приводим к верхнему регистру
+            val upperChar = char.uppercaseChar()
             charCount[upperChar] = charCount.getOrDefault(upperChar, 0) + 1
         }
 
-        // сортируем символы в алфавитном порядке
         val sortedChars = charCount.keys.sorted()
 
-        // выводим результат
         println("Результат подсчета символов:")
         for (char in sortedChars) {
             println("$char - ${charCount[char]}")
@@ -91,20 +87,17 @@ fun task3() {
         return
     }
 
-    // Проверяем, что введено число
     val number = input.toIntOrNull()
     if (number == null) {
         println("Ошибка: введено не число.")
         return
     }
 
-    // проверяем, что число натуральное (положительное)
     if (number <= 0) {
         println("Ошибка: введите натуральное число (больше 0).")
         return
     }
 
-    // преобразуем число в двоичную систему
     var tempNumber = number
     var binaryString = ""
 
@@ -128,16 +121,13 @@ fun task4() {
         return
     }
 
-    // разделяем ввод по пробелам
     val parts = input.split(" ")
 
-    // проверяем, что введено три части
     if (parts.size != 3) {
         println("Ошибка: неверный формат ввода. Используйте: ЧИСЛО1 ЧИСЛО2 ОПЕРАЦИЯ")
         return
     }
 
-    //парсим числа
     val num1 = parts[0].toDoubleOrNull()
     val num2 = parts[1].toDoubleOrNull()
     val operation = parts[2]
@@ -147,7 +137,6 @@ fun task4() {
         return
     }
 
-    // Выполняем операцию
     val result = when (operation) {
         "+" -> num1 + num2
         "-" -> num1 - num2
@@ -265,41 +254,37 @@ private fun checkPower(x: Double, y: Int, n: Int): Boolean {
 
 fun task6() {
     println("Введите первую цифру:")
-    val digit1 = readLine()?.toIntOrNull()
+    val num1 = readLine()?.toIntOrNull()
 
     println("Введите вторую цифру:")
-    val digit2 = readLine()?.toIntOrNull()
+    val num2 = readLine()?.toIntOrNull()
 
-    if (digit1 == null || digit2 == null) {
+    if (num1 == null || num2 == null) {
         println("Ошибка: введены не цифры")
         return
     }
 
-    if (digit1 !in 0..9 || digit2 !in 0..9) {
+    if (num1 !in 0..9 || num2 !in 0..9) {
         println("Ошибка: введены не цифры (должны быть от 0 до 9)")
         return
     }
 
-    if (digit1 == digit2) {
+    if (num1 == num2) {
         println("Цифры должны быть различны")
         return
     }
 
-    // Пытаемся составить нечетное число из двух цифр
-    val possibleNumbers = mutableListOf<Int>()
+    val possNums = mutableListOf<Int>()
 
-    // Первый вариант: первая цифра - десятки, вторая - единицы
-    if (digit1 != 0) { // Число не может начинаться с 0
-        possibleNumbers.add(digit1 * 10 + digit2)
+    if (num1 != 0) {
+        possNums.add(num1 * 10 + num2)
     }
 
-    // Второй вариант: вторая цифра - десятки, первая - единицы
-    if (digit2 != 0) { // Число не может начинаться с 0
-        possibleNumbers.add(digit2 * 10 + digit1)
+    if (num2 != 0) {
+        possNums.add(num2 * 10 + num1)
     }
 
-    // Ищем нечетное число среди возможных вариантов
-    val oddNumber = possibleNumbers.firstOrNull { it % 2 != 0 }
+    val oddNumber = possNums.firstOrNull { it % 2 != 0 }
 
     if (oddNumber != null) {
         println("Нечетное число: $oddNumber")
